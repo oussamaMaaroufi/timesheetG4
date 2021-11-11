@@ -3,12 +3,8 @@ package tn.esprit.spring.controller;
 import java.util.Date;
 import java.util.List;
 
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
-import javax.validation.constraints.Pattern;
-
-import org.ocpsoft.rewrite.annotation.Join;
-import org.ocpsoft.rewrite.el.ELBeanName;
+ 
+ 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -24,9 +20,7 @@ import tn.esprit.spring.services.IEmployeService;
 
 @Scope(value = "session")
 @Controller(value = "employeController")
-@ELBeanName(value = "employeController")
-@Join(path = "/", to = "/login.jsf")
-public class ControllerEmployeImpl  {
+ public class ControllerEmployeImpl  {
 
 	@Autowired
 	IEmployeService employeService;
@@ -46,33 +40,7 @@ public class ControllerEmployeImpl  {
 	private List<Employe> employes; 
 
 	private Integer employeIdToBeUpdated; // getter et setter
-
-
-	public String doLogin() {
-
-		String navigateTo = "null";
-		authenticatedUser=employeService.authenticate(login, password);
-		if (authenticatedUser != null && authenticatedUser.getRole() == Role.ADMINISTRATEUR) {
-			navigateTo = "/pages/admin/welcome.xhtml?faces-redirect=true";
-			loggedIn = true;
-		}		
-
-		else
-		{
-			
-			FacesMessage facesMessage =
-					new FacesMessage("Login Failed: Please check your username/password and try again.");
-			FacesContext.getCurrentInstance().addMessage("form:btn",facesMessage);
-		}
-		return navigateTo;	
-	}
-
-	public String doLogout()
-	{
-		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-	
-	return "/login.xhtml?faces-redirect=true";
-	}
+ 
 
 
 	public String addEmploye() {

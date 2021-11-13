@@ -13,8 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import tn.esprit.spring.controller.ControllerEmployeImpl;
 
 
-public class LoginFilter implements Filter {
-
+public class LoginFilter {
+/*
 	@Override
 	public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
 
@@ -28,7 +28,7 @@ public class LoginFilter implements Filter {
 		{ filterChain.doFilter(servletRequest, servletResponse);} 
 		
 		else {httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/login.jsf" );}
-	}
+	}*/
 
 }
 

@@ -30,6 +30,8 @@ class TimesheetApplicationTests {
 		}
 	//	l.info("test test")
 		System.out.print("test");
+		System.out.print("test");
+		System.out.print("test");
 		
 	}
 

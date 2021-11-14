@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Implementation-Title: timesheet
+Implementation-Version: 2.0.0-SNAPSHOT
+Built-By: oussa
+Implementation-Vendor-Id: tn.esprit.spring
+Build-Jdk: 1.8.0_301
+Implementation-URL: https://spring.io/projects/spring-boot/timesheet
+Created-By: Maven Integration for Eclipse
+

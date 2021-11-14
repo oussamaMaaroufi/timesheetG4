@@ -29,7 +29,7 @@ public class MissionServiceImpl implements IMissionServices {
 		
 			L.info("in method retive all mission");
 			mission = (List<Mission>) missionRepository.findAll(); 
-			System.out.println("ekhdeeeeee"+mission);
+		
 			L.debug("Connection a la BD");
 			for (Mission mission1 : mission) {
 

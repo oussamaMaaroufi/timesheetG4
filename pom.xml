@@ -99,7 +99,7 @@
     
     <distributionManagement>
         
-        
+       
         <snapshotRepository>
             <id>nexus-snapshots</id>
             <url>http://localhost:8081/repository/maven-snapshots/</url>
@@ -111,7 +111,7 @@
             <url>http://localhost:8081/repository/maven-releases/</url>
           </repository>
           
-          
+        
     </distributionManagement>
     
     

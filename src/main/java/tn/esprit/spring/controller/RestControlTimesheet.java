@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import tn.esprit.spring.dto.MissionDTO;
 import tn.esprit.spring.entities.Employe;
 import tn.esprit.spring.entities.Mission;
 import tn.esprit.spring.services.IEmployeService;
@@ -28,23 +29,19 @@ public class RestControlTimesheet {
 	@Autowired
 	ITimesheetService itimesheetservice;
 	
-	// http://localhost:8081/SpringMVC/servlet/ajouterMission
-	//{"id":4,"name":"mamission", "description":"c ma mission"}
+	
 	@PostMapping("/ajouterMission")
 	@ResponseBody
-	public int ajouterMission(@RequestBody Mission mission) {
+	public int ajouterMission(@RequestBody MissionDTO mission) {
 		itimesheetservice.ajouterMission(mission);
 		return mission.getId();
 	}
 
-	// http://localhost:8081/SpringMVC/servlet/affecterMissionADepartement/4/4
 	@PutMapping(value = "/affecterMissionADepartement/{idmission}/{iddept}") 
 	public void affecterMissionADepartement(@PathVariable("idmission") int missionId, @PathVariable("iddept") int depId) {
 		itimesheetservice.affecterMissionADepartement(missionId, depId);
 	}
 	
-	// http://localhost:8081/SpringMVC/servlet/ajouterTimesheet
-    //{"missionId":1,"employeId":2,"dateDebut":"2020-03-01","dateFin":"2021-03-01"}
 	
 	@PostMapping("/ajouterTimesheet/idmission/idemp/dated/datef")
 	@ResponseBody
@@ -52,13 +49,11 @@ public class RestControlTimesheet {
 		itimesheetservice.ajouterTimesheet(missionId, employeId, dateDebut, dateFin);
 	}
 
-	// http://localhost:8081/SpringMVC/servlet/validerTimesheet/1/1/03-10-2020/03-20-2020/1
 	@PutMapping(value = "/validerTimesheet/{idmission}/{idemp}/{dated}/{datef}/{idval}") 
 	public void validerTimesheet(@PathVariable("idmission") int missionId, @PathVariable("idemp") int employeId, @PathVariable("dated") Date dateDebut,@PathVariable("datef") Date dateFin, @PathVariable("idval") int validateurId) {
 		itimesheetservice.validerTimesheet(missionId, employeId, dateDebut, dateFin, validateurId);
 	}
 	
-	// URL : http://localhost:8081/SpringMVC/servlet/findAllMissionByEmployeJPQL/1
     @GetMapping(value = "findAllMissionByEmployeJPQL/{idemp}")
     @ResponseBody
 	public List<Mission> findAllMissionByEmployeJPQL(@PathVariable("idemp") int employeId) {
@@ -66,7 +61,6 @@ public class RestControlTimesheet {
 		return itimesheetservice.findAllMissionByEmployeJPQL(employeId);
 	}
 
-    // URL : http://localhost:8081/SpringMVC/servlet/getAllEmployeByMission/1
     @GetMapping(value = "getAllEmployeByMission/{idmission}")
     @ResponseBody
 	public List<Employe> getAllEmployeByMission(@PathVariable("idmission") int missionId) {

@@ -1,11 +1,11 @@
 pipeline {
     agent any
 
-    tools {
+    //tools {
         
         //maven "M3"
         //jdk 'OPENJDK-11'
-    }
+   // }
 
     stages {
         stage('Sonar Quick scane ') {

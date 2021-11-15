@@ -31,7 +31,7 @@ pipeline {
 				steps {
  				script {
  					echo 'Building our Docker Image oumay55/repodocker...'
-                	sh 'docker build -t oumay55/repodocker.'
+                	sh "docker build -t oumay55/repodocker."
  				}
  			}
 			 }

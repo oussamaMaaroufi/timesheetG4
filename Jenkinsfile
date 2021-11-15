@@ -28,14 +28,12 @@ pipeline {
 			}
 
 			stage('Building Image'){
-				steps {
-
- 					echo 'Building our Docker Image oumay55/repodocker...'
-                	sh "docker build -t oumay55/repodocker"
- 				
- 			}
-			 }
-
+				steps{
+					script{
+						dockerImage = docker.build registry + ":$BUILD_NUMBER"
+					}
+				}				
+			}
 			 stage('Deploy Image'){
 			 	steps{
 			 		script{

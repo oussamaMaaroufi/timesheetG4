@@ -33,7 +33,7 @@ pipeline {
             steps {
 
                 sh "docker login"
-                sh "docker build -t hamatrabelsi/timesheet:${currentBuild.number}" 
+                sh "docker build -t hamatrabelsi/timesheet:${currentBuild.number} ." 
                 sh "docker push hamatrabelsi/timesheet:${currentBuild.number}"
 
                 

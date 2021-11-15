@@ -5,20 +5,20 @@ pipeline {
 
 			stage('Clean and package'){
 				steps{
-					bat "mvn clean package"
+					sh "mvn clean package"
 					
 				}				
 			}
 
 			stage('Sonar'){
 				steps{
-                   bat "mvn sonar:sonar"
+                   sh "mvn sonar:sonar"
                 }
 			} 
 
 			stage('Deploy'){
 				steps{
-					bat "mvn deploy"
+					sh "mvn deploy"
 				}				
 			}
 

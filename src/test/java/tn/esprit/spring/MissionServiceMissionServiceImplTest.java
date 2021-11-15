@@ -18,7 +18,7 @@ import tn.esprit.spring.services.MissionServiceImpl;
 
 @SpringBootTest
 public class MissionServiceMissionServiceImplTest {
-	 
+	/* 
 	@Autowired 
 	private MissionServiceImpl m;
 	
@@ -52,7 +52,7 @@ public class MissionServiceMissionServiceImplTest {
 		l.info("*** MISSION BY EMP ***" + listM);
 		assertNotNull(listM);
 	}
-
+*/
  
 }
 

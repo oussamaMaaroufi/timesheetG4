@@ -33,7 +33,7 @@ public class EmployeServiceImplTest {
 
 	private static final Logger l = LogManager.getLogger(EmployeServiceImplTest.class);
 
-	@Test
+	/*@Test
 	public void testGetEmployePrenomById() {
 		try {
 			int idE = employeS
@@ -80,7 +80,7 @@ public class EmployeServiceImplTest {
 		} catch (Exception e) {
 			l.error(String.format("Erreur dans Mettre A jour Email By Employe Id : %s ", e));
 		}
-	}
+	}*/
 
 	
 

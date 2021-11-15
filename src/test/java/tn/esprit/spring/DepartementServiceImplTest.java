@@ -1,6 +1,8 @@
 package tn.esprit.spring;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 import java.util.List;
 
@@ -38,14 +40,13 @@ public class DepartementServiceImplTest {
 	@Test
 	public void testAjouterDepartement(){
 		Departement d = new Departement ("IT Dep");
-		
 		Departement dAdded = DepService.ajouterDepartement(d);
 		assertEquals(d.getName(), dAdded.getName());
 	}
 	@Test
 	public void testAffecterDepartementAEntreprise() {
 		int entrepriseId = 1 ;
-		int depId = 3;  // +1  update this id  by one each time I  run Junit test 
+		int depId = 5;  // +1  update this id  by one each time I  run Junit test 
 		Departement Dep = deptRepoistory.findById(depId).orElse(null);
 		Entreprise Ent = entrepriseRepoistory.findById(entrepriseId).orElse(null);
 		if (Dep != null){
@@ -57,8 +58,8 @@ public class DepartementServiceImplTest {
 	}
 	@Test
 	public void testDesaffecterDepartementDuEntreprise () {
-		int entId = 1 ;
-		int depId =5 ;//+1
+		int entId = 3 ;
+		int depId = 8 ;//+1
 	    DepService.desaffecterDepartementDuEntreprise(depId, entId);
 	    Departement Dep = deptRepoistory.findById(depId).orElse(null);
 	    if(Dep != null){
@@ -67,16 +68,16 @@ public class DepartementServiceImplTest {
 	}
 	@Test
 	  public void testGetDepartementById(){
-		int depId = 3;//+1
+		int depId = 5;//+1
 		Departement dep= DepService.getDepartmentById(depId);
 		
-		assertEquals(3, dep.getId());//+1
+		assertEquals(51, dep.getId());//+1
 	}
 	
 	
 	@Test
 	public void testDeleteDepartementById(){
-		int depId = 10 ;//+1
+		int depId = 12 ;//+1
 		int i = DepService.deleteDepartementById(depId);
 		assertEquals(0, i);
 		

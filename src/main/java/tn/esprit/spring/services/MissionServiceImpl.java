@@ -1,104 +1,92 @@
 package tn.esprit.spring.services;
 
 import java.util.List;
-import java.util.Optional;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import tn.esprit.spring.entities.Departement;
+import tn.esprit.spring.entities.Employe;
 import tn.esprit.spring.entities.Mission;
+import tn.esprit.spring.repository.DepartementRepository;
 import tn.esprit.spring.repository.MissionRepository;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import tn.esprit.spring.repository.TimesheetRepository;
 
 @Service
-public class MissionServiceImpl implements IMissionServices {
+public class MissionServiceImpl implements IMissionService {
 
 	@Autowired
-	MissionRepository missionRepository;
+	MissionRepository miRepo;
+	@Autowired 
+	DepartementRepository depRepo;
+	@Autowired
+	TimesheetRepository timesheetRepository;
+	
+	private static final Logger l = LogManager.getLogger(MissionServiceImpl.class);
 	
 	
-	private static final Logger L = LogManager.getLogger(MissionServiceImpl.class);
-
-	@Override
-	public List<Mission> retrieveAllMission() {
-	
-		List<Mission> mission = null; 
-		try {
-	
+		@Override
+		public List<Mission> retrieveAllMission() {
+			l.info("**GET ALL MISSIONS**");
+			List<Mission> ms = null; 
+			try {
 		
-			L.info("in method retive all mission");
-			mission = (List<Mission>) missionRepository.findAll(); 
-		
-			L.debug("Connection a la BD");
-			for (Mission mission1 : mission) {
-
-			  L.debug("Entreprise:" + mission1.getName());
-			} 
-			
-			L.info("out method retive all mission");
-
-			
-		}catch (Exception e) {
-			L.error("out of method: " + e);
-
+				l.info("In retrieveAllMissions() : ");
+				ms = (List<Mission>) miRepo.findAll();  
+				for (Mission Mission : ms) {
+					l.debug("Mission +++ : " + Mission);
+				} 
+				l.info("Out of retrieveAllMissions() : ");
+			}catch (Exception e) {
+				l.error("Error in retrieveAllMissions() : " + e);
+			}
+	
+			return ms;
+		}
+	
+		@Override
+		public Mission addMission(Mission m) {
+			l.info("**ADDING MISSION**");
+			return miRepo.save(m); 
 			
 		}
-
-		return mission;
-	}
-
-	@Override
-	public Mission addMission(Mission a) {
-
-		L.info("In methode mission1");
-
-		Mission e_saved = missionRepository.save(a); 
-				L.info("Out methode mission1");
-
-				return e_saved; 
-	}
-
-	@Override
-	public void deleteMission(long id) {
-		missionRepository.deleteById((int) id); 
- }
-
-	@Override
-	public Mission updateMission(Mission a) {
-
-		L.info("In methode updatemission");
-
-		Mission e_saved = missionRepository.save(a); 
-
-				L.info("Out methode updatemission");
-
-				return e_saved; 
-	}
-
-	@Override
-	public  Optional <Mission> retrieveMission(int id) {
-		L.info("In methode retrieventre");
-		
-
-	Optional <Mission> a =  missionRepository.findById(id); 
-
-
-	a.ifPresent(existingCustomer -> {
-	    String nameWeWanted = existingCustomer.getName();
-	    //operate on existingCustomer
-	});
-
-	 L.error("error in retrieventr() : " + a);
-
-
-
-L.info("out methode retrieve");
-
-return a;
-	}
-
 	
+		@Override
+		public void deleteMission(String id) {
+			miRepo.deleteById(Long.parseLong(id));
+			
+		}
 	
+		@Override
+		public Mission updateMission(Mission m) {
+			return miRepo.save(m); 
+		}
 
+
+		@Override
+		public List<Mission> findAllMissionByEmployeJPQL(int employeId) {
+			l.info("**MISSION & EMP**");
+			return timesheetRepository.findAllMissionByEmployeJPQL(employeId);
+		}
+
+		@Override
+		public List<Employe> getAllEmployeByMission(int missionId) {
+			l.info("** EMP BY MISSION **");
+			return timesheetRepository.getAllEmployeByMission(missionId);
+		}
+
+		@Override
+		public void affecterMissionADepartement(int missionId, int depId) {
+			l.info("**MISSION & DEP**");
+			Mission mission = miRepo.findById((long) missionId).orElse(null);
+			l.info("MissionID = " + mission);
+			Departement dep = depRepo.findById(depId).orElse(null);
+			l.info("DepartementID = " + dep);
+			if(mission!=null && dep !=null){
+			mission.setDepartement(dep);
+			miRepo.save(mission);
+			}
+  }
 }

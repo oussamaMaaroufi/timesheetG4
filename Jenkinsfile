@@ -1,6 +1,11 @@
 pipeline {
 	agent any 
 	
+	environment { 
+        registry = "oumay55/repodocker" 
+        registryCredential = 'dockerHub'
+        dockerImage = '' 
+    }
 	stages{
 
 			stage('Clean and package'){
@@ -22,7 +27,7 @@ pipeline {
 				}				
 			}
 
-		/*	stage('Building Image'){
+			stage('Building Image'){
 				steps{
 					script{
 						dockerImage = docker.build registry + ":$BUILD_NUMBER"
@@ -37,7 +42,7 @@ pipeline {
                          {dockerImage.push()}
 			 		}
 			 	}
-			 }*/
+			 }
 
 			
 

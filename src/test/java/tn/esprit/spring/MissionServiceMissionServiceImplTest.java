@@ -1,36 +1,58 @@
 package tn.esprit.spring;
+import org.junit.Assert;
+import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import tn.esprit.spring.entities.Employe;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import static org.junit.Assert.assertNotNull;
 
 import java.text.ParseException;
 import java.util.List;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import tn.esprit.spring.entities.Mission;
-import tn.esprit.spring.services.IMissionServices;
+import tn.esprit.spring.services.MissionServiceImpl;
+
 @SpringBootTest
 public class MissionServiceMissionServiceImplTest {
+	 
+	@Autowired 
+	private MissionServiceImpl m;
 	
-	@Autowired
-	IMissionServices missionService;
-	
-	
-	
+	private static final Logger l = LogManager.getLogger(EmployeServiceImplTest.class);
 
-	/*@Test
-	public void testRetrieveAllMission() {
-		List<Mission> ListeMission = missionService.retrieveAllMission();
-		Assertions.assertEquals(2, ListeMission.size());*/
-
+	@Test
+	public void testRetrieveAllMissions() {
+		List<Mission> listMissions = m.retrieveAllMission();
+		l.info("*** ALL MISSIONS HERE ***" + listMissions);
+		assertNotNull(listMissions);
+	}
+		
+	@Test
+	public void testAddMission() throws ParseException {
+		Mission mi = new Mission("Project", "Project"); 
+		Mission MissionAdded = m.addMission(mi); 
+		l.info("*** ADD MISSION HERE ***" + MissionAdded);
+		Assert.assertEquals(mi.getName(), MissionAdded.getName());
+	}
 	
-	//succes
-	/*@Test
-	  public void addMission() throws ParseException{
-		  Mission e = new Mission();
-		  
-	Mission entrepriseAdded = missionService.addMission(e);
-	 Assertions.assertEquals(e.getDescription(),entrepriseAdded.getDescription());}*/
+	@Test
+	public void testEmpByMission() {
+		List<Employe> listEmp = m.getAllEmployeByMission(21);
+		l.info("*** EMP BY MISSION ***" + listEmp);
+		assertNotNull(listEmp);
+	}
+	
+	@Test
+	public void testMissionByEmp() {
+		List<Mission> listM = m.findAllMissionByEmployeJPQL(2);
+		l.info("*** MISSION BY EMP ***" + listM);
+		assertNotNull(listM);
+	}
+
+ 
 }
 

@@ -27,7 +27,7 @@ pipeline {
 				}				
 			}
 
-			/*stage('Building Image'){
+			stage('Building Image'){
 				steps{
 					script{
 						dockerImage = docker.build registry + ":$BUILD_NUMBER"
@@ -42,24 +42,12 @@ pipeline {
                          {dockerImage.push()}
 			 		}
 			 	}
-			 }*/
-			 
+			 }
 
 			
 
 		
-stage('Push IMAGE TO DOCKER HUB') {
-            steps {
 
-                sh "docker login"
-                sh "docker build -t oumay55/repodocker:${currentBuild.number}" 
-                sh "docker push oumay55/repodocker:${currentBuild.number}"
-
-                
-            }
-
-            
-        }
 			
 	}
 }

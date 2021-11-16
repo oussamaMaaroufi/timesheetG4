@@ -77,9 +77,8 @@ public class DepartementServiceImplTest {
 	
 	@Test
 	public void testDeleteDepartementById(){
-		int depId = 15 ;//+1
-		int i = DepService.deleteDepartementById(depId);
-		assertEquals(0, i);
+		int depId = DepService.getAllDepartements().get(0).getId();
+		  this.DepService.deleteDepartementById(depId);
 		
 		
 

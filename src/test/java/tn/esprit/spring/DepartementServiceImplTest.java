@@ -71,13 +71,13 @@ public class DepartementServiceImplTest {
 		int depId = 5;//+1
 		Departement dep= DepService.getDepartmentById(depId);
 		
-		assertEquals(51, dep.getId());//+1
+		assertEquals(5, dep.getId());//+1
 	}
 	
 	
 	@Test
 	public void testDeleteDepartementById(){
-		int depId = 12 ;//+1
+		int depId = 13 ;//+1
 		int i = DepService.deleteDepartementById(depId);
 		assertEquals(0, i);
 		

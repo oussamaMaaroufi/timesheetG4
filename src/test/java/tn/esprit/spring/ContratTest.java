@@ -50,7 +50,7 @@ public class ContratTest {
 	@Test
 	public void testAffecterContratAEmploye() {
 		int employeId = 1 ;
-		int idC = 4; //++
+		int idC = 5; //++
 		Contrat C = contratRepository.findById(idC).orElse(null);
 		Employe Emp = employeRepository.findById(employeId).orElse(null);
 		if (C != null){
@@ -62,7 +62,7 @@ public class ContratTest {
 	
 	@Test
 	public void testDeleteContratById() {
-		int idC = 4; //++
+		int idC = 5; //++
 		int i=cs.deleteContratById(idC);
 		assertEquals(0,i);
 	}

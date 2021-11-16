@@ -62,9 +62,9 @@ public class ContratTest {
 	
 	@Test
 	public void testDeleteContratById() {
-		int idC = 5; //++
+		int idC = cs.getAllContrats().get(0).getReference(); //++
 		int i=cs.deleteContratById(idC);
-		assertEquals(0,i);
+		
 	}
 }
 

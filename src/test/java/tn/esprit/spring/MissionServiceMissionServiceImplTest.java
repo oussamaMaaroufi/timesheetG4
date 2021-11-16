@@ -1,6 +1,7 @@
 package tn.esprit.spring;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import tn.esprit.spring.entities.Employe;
@@ -15,14 +16,17 @@ import java.util.List;
 
 import tn.esprit.spring.entities.Mission;
 import tn.esprit.spring.services.MissionServiceImpl;
+import org.springframework.test.context.junit4.SpringRunner;
 
+
+@RunWith(SpringRunner.class)
 @SpringBootTest
 public class MissionServiceMissionServiceImplTest {
-	/* 
+	 
 	@Autowired 
 	private MissionServiceImpl m;
 	
-	private static final Logger l = LogManager.getLogger(EmployeServiceImplTest.class);
+	private static final Logger l = LogManager.getLogger(MissionServiceMissionServiceImplTest.class);
 
 	@Test
 	public void testRetrieveAllMissions() {
@@ -52,7 +56,7 @@ public class MissionServiceMissionServiceImplTest {
 		l.info("*** MISSION BY EMP ***" + listM);
 		assertNotNull(listM);
 	}
-*/
+
  
 }
 
